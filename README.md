@@ -10,7 +10,7 @@ def deps do
 end
 ```
 
- ## Usage
+## Usage
 
 ##### Creating a secret:
 
