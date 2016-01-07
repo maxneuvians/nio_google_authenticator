@@ -1,6 +1,6 @@
 # NioGoogleAuthenticator
 
-NioGoogleAuthenticator is a simple collection of functions to generate secrets and validate tokens used in conjunction with Google Authenticator. It also includes functions that automatically add a secret to an `Ecto.Changeset`.
+NioGoogleAuthenticator is a collection of Elixir convenience functions to generate secrets and validate tokens used in conjunction with Google Authenticator. It also includes functions that automatically add a secret to an `Ecto.Changeset`.
 
 ## Installation
 Add `nio_google_authenticator` to your list of dependencies in `mix.exs`:
