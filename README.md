@@ -30,7 +30,7 @@ This will yield a URL in the following format:
 
 ##### Validating a token
 
-`.validate_token(token, secret)`
+`.validate_token(secret, token)`
 
 this will either return `{:ok, :pass}` or `{:error, :invalid_token}`
 

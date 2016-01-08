@@ -38,4 +38,9 @@ defmodule NioGoogleAuthenticatorTest do
     secret = generate_secret
     assert {:error, :invalid_token} = validate_token(secret, "ABCDEF")
   end
+
+  test "validate_token returns {:error, 'Both secret and token must be strings'} if something else than a string is passed" do
+    assert {:error, "Both secret and token must be strings"} = validate_token(123, "ABCDEF")
+    assert {:error, "Both secret and token must be strings"} = validate_token("ABCDEF", 123)
+  end
 end

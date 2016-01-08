@@ -30,10 +30,12 @@ defmodule NioGoogleAuthenticator do
   Returns {:ok, :pass} if the token is valid and
   {:error, :invalid_token} if it is not.
   """
-  def validate_token(secret, token) do
+  def validate_token(secret, token) when is_binary(secret) and is_binary(token) do
     case :pot.valid_totp(token, secret) do 
       true -> {:ok, :pass}
       false -> {:error, :invalid_token}
     end
   end
+
+  def validate_token(_, _), do: {:error, "Both secret and token must be strings"}
 end
