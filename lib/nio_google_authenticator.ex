@@ -5,7 +5,7 @@ defmodule NioGoogleAuthenticator do
   """
 
   @issuer Application.get_env(:nio_google_authenticator, :issuer)
-  
+
   @doc """
   Creates a random Base 32 encoded string
   """
@@ -15,12 +15,19 @@ defmodule NioGoogleAuthenticator do
   end
 
   @doc """
-  Creates a URL for a Google QR code that includes a secret, 
-  label, and issuer. Scanning this QR code in the Google 
+  Generates a valid token based on a secret
+  """
+  def generate_token(secret) do
+    :pot.totp(secret)
+  end
+
+  @doc """
+  Creates a URL for a Google QR code that includes a secret,
+  label, and issuer. Scanning this QR code in the Google
   Authenticator app allows the generation of validation tokens.
     """
   def generate_url(secret, label, issuer \\ @issuer) do
-    "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" <> 
+    "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" <>
     URI.encode_www_form("otpauth://totp/#{label}?issuer=#{issuer}&secret=#{secret}")
   end
 
@@ -31,7 +38,7 @@ defmodule NioGoogleAuthenticator do
   {:error, :invalid_token} if it is not.
   """
   def validate_token(secret, token) when is_binary(secret) and is_binary(token) do
-    case :pot.valid_totp(token, secret) do 
+    case :pot.valid_totp(token, secret) do
       true -> {:ok, :pass}
       false -> {:error, :invalid_token}
     end

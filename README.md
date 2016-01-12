@@ -6,7 +6,7 @@ NioGoogleAuthenticator is a collection of Elixir convenience functions to genera
 Add `nio_google_authenticator` to your list of dependencies in `mix.exs`:
 ```
 def deps do
-[{:nio_google_authenticator, "~> 1.0.0"}]
+[{:nio_google_authenticator, "~> 1.0.1"}]
 end
 ```
 
@@ -16,11 +16,17 @@ end
 
 `.generate_secret`
 
+##### Creating a token:
+
+`.generate_token(secret)`
+
+This method is best used for automatic testing.
+
 ##### Creating the URL that yields a scannable QR code for a Google Authenticator mobile app:
 
 `.generate_url(secret, label, issuer \\ @issuer)`
 
-where issuer can be configured universally using: 
+where issuer can be configured universally using:
 
 `config :nio_google_authenticator, issuer: "Neuvians.io"`
 
@@ -38,7 +44,7 @@ this will either return `{:ok, :pass}` or `{:error, :invalid_token}`
 There are two additional functions which you can pass an `Ecto.Changeset` which will automatically add a secret to the changeset. For both function you can specify the attribute to change (ex. `.add_secret_to_changeset(changeset, :my_secret_field)`) but if none is specified `:ga_secret` is used.
 
 ##### Adding a secret to a changeset
-To add a secret inside a changeset pipe you can call `add_secret_to_changeset(changeset)`. This will only add the secret if the passed attribute or `:ga_secret` is `nil`. Otherwise it is ignored. 
+To add a secret inside a changeset pipe you can call `add_secret_to_changeset(changeset)`. This will only add the secret if the passed attribute or `:ga_secret` is `nil`. Otherwise it is ignored.
 
 ##### Regenerating a secret in a changeset
 If you would like to renegerate a secret you can use `.regenerate_secret_in_changeset(changeset)` which will always replace an existing value.
@@ -61,9 +67,9 @@ defmodule User do
     end
   end
  ```
-  
+
 ### Version
-0.5.0
+1.0.1
 
 License
 ----

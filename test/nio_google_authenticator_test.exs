@@ -1,9 +1,21 @@
 defmodule NioGoogleAuthenticatorTest do
   use ExUnit.Case
   import NioGoogleAuthenticator
+
   test "generate_secret returns a 32 bit encoded string" do
     secret = generate_secret
     assert {:ok, _} = Base.decode32(secret)
+  end
+
+  test "generate_token creates a valid token" do
+    secret = generate_secret
+    token = generate_token(secret)
+    assert {:ok, :pass} = validate_token(secret, token)
+  end
+
+  test "generate_token creates a valid token based on a secret of length 6" do
+    secret = generate_secret
+    assert generate_token(secret) |> String.length == 6
   end
 
   test "generate_url creates a Google QR code url with the correct secret" do
@@ -23,7 +35,7 @@ defmodule NioGoogleAuthenticatorTest do
 
   test "generate_url uses a configured issuer if one is not passed" do
     secret = generate_secret
-    assert generate_url(secret, "LABEL") =~ 
+    assert generate_url(secret, "LABEL") =~
       URI.encode_www_form(Application.get_env(:nio_google_authenticator, :issuer))
   end
 
