@@ -1,4 +1,4 @@
 %{"decimal": {:hex, :decimal, "1.1.1"},
   "ecto": {:hex, :ecto, "1.1.1"},
   "poolboy": {:hex, :poolboy, "1.5.1"},
-  "pot": {:git, "https://github.com/yuce/pot.git", "fcb98ca684f1c78268e45703a0f04d7fde4972f2", []}}
+  "pot": {:hex, :pot, "0.9.3"}}

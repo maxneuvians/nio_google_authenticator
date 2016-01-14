@@ -19,7 +19,7 @@ defmodule NioGoogleAuthenticator.Mixfile do
   defp deps do
     [
       {:ecto, "~> 1.1"},
-      {:pot, git: "https://github.com/yuce/pot.git"}
+      {:pot, "~> 0.9.3"}
     ]
   end
 
