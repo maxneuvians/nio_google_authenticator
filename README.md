@@ -6,7 +6,7 @@ NioGoogleAuthenticator is a collection of Elixir convenience functions to genera
 Add `nio_google_authenticator` to your list of dependencies in `mix.exs`:
 ```
 def deps do
-[{:nio_google_authenticator, github: "maxneuvians/nio_google_authenticator"}]
+[{:nio_google_authenticator, "~> 1.0.1"}]
 end
 ```
 
