@@ -6,7 +6,7 @@ NioGoogleAuthenticator is a collection of Elixir convenience functions to genera
 Add `nio_google_authenticator` to your list of dependencies in `mix.exs`:
 ```
 def deps do
-[{:nio_google_authenticator, "~> 1.0.1"}]
+[{:nio_google_authenticator, github: "maxneuvians/nio_google_authenticator"}]
 end
 ```
 
@@ -28,11 +28,11 @@ This method is best used for automatic testing.
 
 where issuer can be configured universally using:
 
-`config :nio_google_authenticator, issuer: "Neuvians.io"`
+`config :nio_google_authenticator, issuer: "Neuvians"`
 
 This will yield a URL in the following format:
 
-`https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=otpauth%3A%2F%2Ftotp%2FLABEL%3Fissuer%3DISSUER%26secret%3DBM7SUJ4MLRN2UPI6`
+`https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=otpauth%3A%2F%2Ftotp%2FLABEL%3Fissuer%3DNeuvians%26secret%3DBM7SUJ4MLRN2UPI6`
 
 ##### Validating a token
 
