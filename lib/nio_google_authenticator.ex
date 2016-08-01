@@ -4,8 +4,6 @@ defmodule NioGoogleAuthenticator do
   Google Authenticator as well as validate them with a time based token.
   """
 
-  @issuer Application.get_env(:nio_google_authenticator, :issuer)
-
   @doc """
   Creates a random Base 32 encoded string
   """
@@ -26,10 +24,12 @@ defmodule NioGoogleAuthenticator do
   label, and issuer. Scanning this QR code in the Google
   Authenticator app allows the generation of validation tokens.
     """
-  def generate_url(secret, label, issuer \\ @issuer) do
+  def generate_url(secret, label, issuer \\ default_issuer()) do
     "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" <>
     URI.encode_www_form("otpauth://totp/#{label}?issuer=#{issuer}&secret=#{secret}")
   end
+
+  defp default_issuer, do: Application.get_env(:nio_google_authenticator, :issuer)
 
   @doc """
   Validates a given token based on a secret.
