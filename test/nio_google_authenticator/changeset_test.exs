@@ -13,7 +13,7 @@ defmodule NioGoogleAuthenticator.ChangesetTest do
       field :secret, :integer
     end
 
-    def changeset(user, params \\ :empty) do
+    def changeset(user, params \\ %{}) do
       user
       |> cast(params, [], [])
     end
