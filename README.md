@@ -6,7 +6,7 @@ NioGoogleAuthenticator is a collection of Elixir convenience functions to genera
 Add `nio_google_authenticator` to your list of dependencies in `mix.exs`:
 ```
 def deps do
-[{:nio_google_authenticator, "~> 1.0.1"}]
+[{:nio_google_authenticator, "~> 2.0.0"}]
 end
 ```
 
@@ -60,16 +60,17 @@ defmodule User do
       field :ga_secret, :string
     end
 
-    def changeset(user, params \\ :empty) do
+    def changeset(user, params \\ %{}) do
       user
-      |> cast(params, ~w(name), ~w(ga_secret))
+      |> cast(params, ~w(name, ga_secret))
+      |> validate_required(params, ~w(name, ga_secret))
       |> NioGoogleAuthenticator.Changeset.add_secret_to_changeset
     end
   end
  ```
 
 ### Version
-1.0.1
+2.0.0
 
 License
 ----

@@ -15,7 +15,7 @@ defmodule NioGoogleAuthenticator.ChangesetTest do
 
     def changeset(user, params \\ %{}) do
       user
-      |> cast(params, [], [])
+      |> cast(params, [])
     end
   end
 
