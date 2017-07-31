@@ -3,13 +3,13 @@ defmodule NioGoogleAuthenticator.Mixfile do
 
   def project do
     [app: :nio_google_authenticator,
-     version: "2.0.1",
+     version: "2.0.2",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   def application do

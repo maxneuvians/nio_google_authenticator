@@ -32,7 +32,7 @@ defmodule NioGoogleAuthenticator.ChangesetTest do
   end
 
   test "add_secret_to_changeset does not add a new secret if one exists" do
-    secret = generate_secret
+    secret = generate_secret()
     changeset = User.changeset(%User{})
     changeset = Ecto.Changeset.put_change(changeset, :ga_secret, secret)
     changeset = add_secret_to_changeset(changeset)
@@ -40,7 +40,7 @@ defmodule NioGoogleAuthenticator.ChangesetTest do
   end
 
   test "regenerate_secret_in_changeset creates a new secret" do
-    secret = generate_secret
+    secret = generate_secret()
     changeset = User.changeset(%User{})
     changeset = Ecto.Changeset.put_change(changeset, :ga_secret, secret)
     changeset = regenerate_secret_in_changeset(changeset)
@@ -48,7 +48,7 @@ defmodule NioGoogleAuthenticator.ChangesetTest do
   end
 
   test "regenerate_secret_in_changeset creates a new secret in an arbitrary field" do
-    secret = generate_secret
+    secret = generate_secret()
     changeset = User.changeset(%User{})
     changeset = Ecto.Changeset.put_change(changeset, :secret, secret)
     changeset = regenerate_secret_in_changeset(changeset, :secret)
