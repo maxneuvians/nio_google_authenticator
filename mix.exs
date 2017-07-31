@@ -3,7 +3,7 @@ defmodule NioGoogleAuthenticator.Mixfile do
 
   def project do
     [app: :nio_google_authenticator,
-     version: "2.1.0",
+     version: "2.1.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -19,7 +19,8 @@ defmodule NioGoogleAuthenticator.Mixfile do
   defp deps do
     [
       {:ecto, "~> 2.0"},
-      {:pot, "~> 0.9.3"}
+      {:pot, "~> 0.9.3"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 

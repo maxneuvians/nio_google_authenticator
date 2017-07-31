@@ -39,6 +39,7 @@ This will yield a URL in the following format:
 `.validate_token(secret, token)` or `.validate_token(secret, token, options)`
 
 `options` is a keyword list for the following:
+
 `token_length` default `6`
 `interval_length` default `30`
 `window` default `0`
@@ -75,7 +76,7 @@ defmodule User do
  ```
 
 ### Version
-2.1.0
+2.1.1
 
 License
 ----
