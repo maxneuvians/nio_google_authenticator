@@ -36,7 +36,12 @@ This will yield a URL in the following format:
 
 ##### Validating a token
 
-`.validate_token(secret, token)`
+`.validate_token(secret, token)` or `.validate_token(secret, token, options)`
+
+`options` is a keyword list for the following:
+`token_length` default `6`
+`interval_length` default `30`
+`window` default `0`
 
 this will either return `{:ok, :pass}` or `{:error, :invalid_token}`
 
@@ -70,7 +75,7 @@ defmodule User do
  ```
 
 ### Version
-2.0.0
+2.1.0
 
 License
 ----

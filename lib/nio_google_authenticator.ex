@@ -32,17 +32,24 @@ defmodule NioGoogleAuthenticator do
   defp default_issuer, do: Application.get_env(:nio_google_authenticator, :issuer)
 
   @doc """
-  Validates a given token based on a secret.
+  Validates a given token based on a secret. You can pass the function a
+  keyword list of the following options:
+  `token_length` default `6`
+  `interval_length` default `30`
+  `window` default 0
 
   Returns {:ok, :pass} if the token is valid and
   {:error, :invalid_token} if it is not.
   """
-  def validate_token(secret, token) when is_binary(secret) and is_binary(token) do
-    case :pot.valid_totp(token, secret) do
+  def validate_token(secret, token) when is_binary(secret) and is_binary(token), do: validate_token(secret, token, [])
+  def validate_token(_, _), do: {:error, "Both secret and token must be strings"}
+
+  def validate_token(secret, token, options) when is_binary(secret) and is_binary(token) do
+    case :pot.valid_totp(token, secret, options) do
       true -> {:ok, :pass}
       false -> {:error, :invalid_token}
     end
   end
 
-  def validate_token(_, _), do: {:error, "Both secret and token must be strings"}
+  def validate_token(_, _, _), do: {:error, "Both secret and token must be strings"}
 end

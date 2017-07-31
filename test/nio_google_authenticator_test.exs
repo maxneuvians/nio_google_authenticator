@@ -46,6 +46,11 @@ defmodule NioGoogleAuthenticatorTest do
     end)
   end
 
+  test "validate_token returns {:error, :invalid_token} when an incorrect token is used based on token_length options" do
+    secret = generate_secret()
+    assert {:error, :invalid_token} = validate_token(secret, :pot.totp(secret), [token_length: 3])
+  end
+
   test "validate_token returns {:error, :invalid_token} when an incorrect token is used" do
     secret = generate_secret()
     assert {:error, :invalid_token} = validate_token(secret, "ABCDEF")

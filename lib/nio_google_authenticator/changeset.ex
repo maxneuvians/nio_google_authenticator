@@ -1,6 +1,6 @@
 defmodule NioGoogleAuthenticator.Changeset do
   @moduledoc """
-  This module allows a google authenticator secret 
+  This module allows a google authenticator secret
   to be inserted into an Ecto.changeset.
   """
 
@@ -15,7 +15,7 @@ defmodule NioGoogleAuthenticator.Changeset do
   """
   def add_secret_to_changeset(changeset, attribute_name \\ :ga_secret) do
     case get_field(changeset, attribute_name) do
-      nil -> put_change(changeset, attribute_name, generate_secret)
+      nil -> put_change(changeset, attribute_name, generate_secret())
       _ -> changeset
     end
   end
@@ -27,6 +27,6 @@ defmodule NioGoogleAuthenticator.Changeset do
   defaults to :ga_secret
   """
   def regenerate_secret_in_changeset(changeset, attribute_name \\ :ga_secret) do
-    put_change(changeset, attribute_name, generate_secret)
+    put_change(changeset, attribute_name, generate_secret())
   end
 end
